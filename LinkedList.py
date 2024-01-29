@@ -67,7 +67,7 @@ class LinkedList:
 
             if index - 1 == count:
                 node = Node(data, itr.next)
-                iter.next = node
+                itr.next = node
 
             itr = itr.next
             count += 1
@@ -86,18 +86,25 @@ class LinkedList:
 
         print(lstr)
 
+    def reverse(self):
+        current = self.head
+        newLinkedList = None
+        while current:
+           next_node=current.next
+           current.next=newLinkedList
+           newLinkedList=current
+           current=next_node
+        self.head=newLinkedList
+
+
+
+
+
+
+
 
 ll = LinkedList()
-ll.insert_values(["banana","mango","grapes","orange"])
+ll.insert_values([1,2,3,4,5])
 ll.print()
-ll.insert_after_value("mango", "apple")  # insert apple after mango
-ll.print()
-ll.remove_by_value("orange")  # remove orange from linked list
-ll.print()
-ll.remove_by_value("figs")
-ll.print()
-ll.remove_by_value("banana")
-ll.remove_by_value("mango")
-ll.remove_by_value("apple")
-ll.remove_by_value("grapes")
+ll.reverse()
 ll.print()
