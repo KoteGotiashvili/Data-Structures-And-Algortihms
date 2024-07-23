@@ -1,5 +1,4 @@
-# https://python-course.eu/applications-python/graphs-python.php
-# Everything is on this link
+
 
 # C is middle node and connects to all, f is alone
 import networkx as nx
