@@ -11,9 +11,9 @@ class TreeNode:
     def get_level_of_tree(self):
         level = 0
         prnt=self.parent
-        while prnt:
+        while prnt: #
             level+=1
-            prnt=prnt.parent
+            prnt=prnt.parent # goes to back until reach head node prnt.parent means parent of current node parent
         return level
 
 
