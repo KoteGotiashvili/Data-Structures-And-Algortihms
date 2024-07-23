@@ -86,25 +86,42 @@ class LinkedList:
 
         print(lstr)
 
-    def reverse(self):
-        current = self.head
-        newLinkedList = None
-        while current:
-           next_node=current.next
-           current.next=newLinkedList
-           newLinkedList=current
-           current=next_node
-        self.head=newLinkedList
+    def reverse(self, current):
+        if current is None or current.next is None:
+            #set last element to first element, head
+            self.head=current
+            return
+        self.reverse(current.next) # call recursively in order to get last element
+        # next means next pointer 6 this->this 5 next does not mean None next.next means pointer after 5 for example
+        current.next.next = current
+        current.next = None
 
-
-
+    # Merge two sorted LinkedList
+    def merge(self,current_a, current_b):
+        # After some value is none it is returned from call stack
+        if current_a is None:
+            return current_b
+        if current_b is None:
+            return current_a
+        if current_a.data < current_b.data:
+            # After some value is none it is returned from call stack and assigned here using next. it does backpropagation of functions
+            # like this 1 -> merge(2,100), 1-> merge(3,100) and then sets returned values from functions
+            # It re assigning pointers from call stack
+            current_a.next = self.merge(current_a.next, current_b) # backs there returned values from call stack
+            return current_a
+        else:
+            current_b.next = self.merge(current_a, current_b.next) # here to its returns based on call stack and output and sets using next pointer
+            return current_b
 
 
 
 
 
 ll = LinkedList()
+
+ll_1 = LinkedList()
 ll.insert_values([1,2,3,4,5])
+ll_1.insert_values([100,200,300,400,500])
 ll.print()
-ll.reverse()
+ll.merge(ll.head, ll_1.head)
 ll.print()
